@@ -1,0 +1,34 @@
+{
+  "name": "kitchen-slack-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "start:prod": "node app.js",
+    "start:dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nmbrs/kitchen-slack-bot.git"
+  },
+  "author": "Filipe Figueredo Silva",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Nmbrs/kitchen-slack-bot/issues"
+  },
+  "homepage": "https://github.com/Nmbrs/kitchen-slack-bot#readme",
+  "dependencies": {
+    "@slack/bolt": "^3.10.0",
+    "@slack/events-api": "^3.0.1",
+    "@slack/web-api": "^6.7.0",
+    "axios": "^0.26.1",
+    "config": "^3.3.7",
+    "dotenv": "^16.0.0",
+    "js-yaml": "^4.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
