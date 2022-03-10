@@ -19,41 +19,23 @@ export async function eventListeners(app: App) {
         await say(`Latest Github Runner url: ${result}`);
       } else if (command.text.includes('mobile create') || command.text.includes('create mobile')) {
         if (!command.text.includes('please')) {
-            await say(unpoliteMessage);
-          } else {
-            await say(destroyKitchenMessage);
-          }
-        //await kitchenActionRequest(provisionUrl, provisionPayload);
+          await say(unpoliteMessage);
+        } else {
+          await say(createKitchenMessage);
+          await kitchenActionRequest(provisionUrl, provisionPayload);
+        }
       } else if (command.text.includes('mobile destroy') || command.text.includes('destroy mobile')) {
         if (!command.text.includes('please')) {
           await say(unpoliteMessage);
         } else {
           await say(destroyKitchenMessage);
+          await kitchenActionRequest(destroyUrl, destroyPayload);
         }
-
-        //await kitchenActionRequest(destroyUrl, destroyPayload);
       }
     } catch (error) {
       console.error(error.message);
       throw new Error('new error');
     }
-  });
-
-  app.message('status', async ({ message, say }) => {
-    const result = await getRunnerURlRequest();
-    await say(`Runner url ${result}`);
-  });
-
-  app.message('create', async ({ message, say }) => {
-    await say(createKitchenMessage);
-  });
-
-  app.message('destroy', async ({ message, say }) => {
-    await say(destroyKitchenMessage);
-  });
-
-  app.message('rude', async ({ message, say }) => {
-    await say(unpoliteMessage);
   });
 
   // subscribe to 'app_mention' event in your App config
