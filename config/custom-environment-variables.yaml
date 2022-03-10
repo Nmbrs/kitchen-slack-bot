@@ -7,3 +7,4 @@ github:
   personalAccessToken: NODE_GITHUB_PAT
   provisionWorkflowUrl: NODE_GITHUB_API_PROVISION_WORKFLOW_URL
   destroyWorkflowUrl: NODE_GITHUB_API_DESTROY_WORKFLOW_URL
+  workflowRunnerUrl: NODE_GITHUB_API_WORKFLOW_RUNNER_URL
