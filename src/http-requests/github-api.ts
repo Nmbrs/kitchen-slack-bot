@@ -40,8 +40,6 @@ export async function getRunnerURlRequest(date?: string) {
     url = `${getConfig<string>('github.workflowRunnerUrl')}?branch=master`;
   }
 
-  console.log(url);
-  
   const token = getConfig<string>('github.personalAccessToken');
 
   const requestConfiguration = {
