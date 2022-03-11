@@ -41,3 +41,5 @@ export const createKitchenMessage = `I cook 🍲, I create, I'm incredibly excit
 export const destroyKitchenMessage = `I'll burn your kitchen to the ground 🔥.`;
 
 export const unpoliteMessage = "Where're the manners Johny?";
+
+export const latestRunMessage = "Here's the link for the latest run: "

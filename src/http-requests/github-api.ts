@@ -1,6 +1,6 @@
-import  http from 'http'
+import http from 'http';
 import { getConfig } from './../configurations/config';
-import axios from 'axios'
+import axios from 'axios';
 
 export async function kitchenActionRequest(url, data) {
   const token = getConfig<string>('github.personalAccessToken');
@@ -34,8 +34,14 @@ export async function kitchenActionRequest(url, data) {
   }
 }
 
-export async function getRunnerURlRequest() {
-  const url = getConfig<string>('github.workflowRunnerUrl');
+export async function getRunnerURlRequest(date?: string) {
+  let url = `${getConfig<string>('github.workflowRunnerUrl')}?branch=master&created==>${date}`;
+  if (!date) {
+    url = `${getConfig<string>('github.workflowRunnerUrl')}?branch=master`;
+  }
+
+  console.log(url);
+  
   const token = getConfig<string>('github.personalAccessToken');
 
   const requestConfiguration = {
