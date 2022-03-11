@@ -24,11 +24,11 @@ export async function eventListeners(app: App) {
     try {
       await ack();
 
-      if (command.text === 'status') {
+      if (command.text.toLowerCase() === 'status') {
         const result = await getCurrentRunnerData();
         await say(`${latestRunMessage}${result}`);
-      } else if (command.text.includes('mobile create') || command.text.includes('create mobile')) {
-        if (!command.text.includes('please')) {
+      } else if (command.text.toLowerCase().includes('mobile create') || command.text.toLowerCase().includes('create mobile')) {
+        if (!command.text.toLowerCase().includes('please')) {
           await say(unpoliteMessage);
         } else {
           await say(createKitchenMessage);
@@ -36,7 +36,7 @@ export async function eventListeners(app: App) {
           const result = await getCurrentRunnerData(date);
           await say(`${latestRunMessage}${result}`);
         }
-      } else if (command.text.includes('mobile destroy') || command.text.includes('destroy mobile')) {
+      } else if (command.text.toLowerCase().includes('mobile destroy') || command.text.toLowerCase().includes('destroy mobile')) {
         if (!command.text.includes('please')) {
           await say(unpoliteMessage);
         } else {
@@ -66,7 +66,7 @@ function getCurrentRunnerData(date?: string): Promise<string> {
   pollingDelay.toString();
   return firstValueFrom(
     timer(pollingDelay, pollingInterval).pipe(
-      // Tries to read the number of attempts determinded by 'pollingAttempts'
+      // Tries to read the number of attempts determined by 'pollingAttempts'
       take(pollingAttempts),
       //retrieve the runner data
       exhaustMap(() => {
@@ -74,7 +74,7 @@ function getCurrentRunnerData(date?: string): Promise<string> {
       }),
       //return only truth values
       filter((result) => result),
-      //Take the firs emitted value
+      //Take the first emitted value
       first(),
       //Error Handling
       catchError((error) => {
