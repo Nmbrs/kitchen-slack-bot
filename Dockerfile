@@ -64,4 +64,4 @@ COPY --from=build-environment /opt/node_app/package*.json ./
 EXPOSE 8080
 
 # Start the application using ENTRYPOINT to enable the container to accept appended arguments.
-ENTRYPOINT ["node", "dist/app.js"]
+ENTRYPOINT ["node", "dist/main.js"]
