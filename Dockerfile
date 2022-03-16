@@ -34,6 +34,12 @@ COPY . .
 # Run npm command to install npm v8 latest stable version.
 RUN npm install -g npm@8
 
+# Run npm command to install application dependencies build and remove non-production packages.
+RUN npm ci \
+    && npm run build \
+    && npm prune --production
+
+
 ###################################################################################################
 # Base image (used for deployment)                                                                #
 ###################################################################################################
@@ -46,6 +52,7 @@ WORKDIR /opt/node_app
 COPY --from=build-environment /opt/node_app/config/custom-environment-variables.yaml ./config/
 COPY --from=build-environment /opt/node_app/config/default.yaml ./config/
 COPY --from=build-environment /opt/node_app/node_modules/ ./node_modules/
+COPY --from=build-environment /opt/node_app/dist/ ./dist/
 COPY --from=build-environment /opt/node_app/*.js ./
 COPY --from=build-environment /opt/node_app/package*.json ./
 
@@ -57,4 +64,4 @@ COPY --from=build-environment /opt/node_app/package*.json ./
 EXPOSE 8080
 
 # Start the application using ENTRYPOINT to enable the container to accept appended arguments.
-ENTRYPOINT ["node", "app.js"]
+ENTRYPOINT ["node", "dist/app.js"]
