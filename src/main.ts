@@ -1,7 +1,8 @@
-import { App } from '@slack/bolt';
+import { App, LogLevel } from '@slack/bolt';
 import { getConfig } from './configurations/config';
 
 import { eventListeners } from './bot-events';
+import { routes } from './routes';
 
 // If no environment is defined, sets environment to "development"
 if (!process.env.NODE_ENV) {
@@ -12,6 +13,8 @@ if (!process.env.NODE_ENV) {
 const app = new App({
   signingSecret: getConfig<string>('slack.signingSecret'),
   token: getConfig<string>('slack.botOAuthToken'),
+  logLevel: LogLevel.INFO,
+  customRoutes: routes
 });
 
 eventListeners(app);
