@@ -16,8 +16,8 @@ export async function eventListeners(app: App) {
   const provisionUrl = config.get('github.provisionWorkflowUrl');
   const destroyUrl = config.get('github.destroyWorkflowUrl');
 
-  const provisionPayload = { ref: 'master', inputs: { action: 'create' } };
-  const destroyPayload = { ref: 'master', inputs: { action: 'destroy' } };
+  const provisionPayload = { ref: 'master', inputs: { environment: 'dev' } };
+  const destroyPayload = { ref: 'master', inputs: { environment: 'dev' } };
 
   app.command('/kitchen', async ({ command, ack, say }) => {
     const date = new Date().toISOString();
