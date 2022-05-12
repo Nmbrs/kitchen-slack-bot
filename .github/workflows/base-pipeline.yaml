@@ -15,7 +15,7 @@ jobs:
     needs: versioned-container-image
     steps:
       - name: echo image full name
-        runs: echo ${{needs.versioned-container-image.outputs.container_image_name}}
+        run: echo ${{needs.versioned-container-image.outputs.container_image_name}}
 
   latest-container-image:
     name: build latest container image
